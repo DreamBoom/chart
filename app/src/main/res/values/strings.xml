@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">weatherStation</string>
+    <string name="digit">._/$0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLIMNOPQRSTUVWXYZ</string>
+</resources>
