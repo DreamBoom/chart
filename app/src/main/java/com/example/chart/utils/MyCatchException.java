@@ -7,8 +7,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
-import yfkj.weatherstation.utils.LogUtils;
-
 /**
  * Created by Linfeng on 2019/05/14.
  */

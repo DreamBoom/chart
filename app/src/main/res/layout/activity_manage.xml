@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    tools:context=".activity.ManageActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/bg2" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:text="工业企业信息管理"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size17" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="15dp"
+        android:padding="10dp"
+        android:src="@mipmap/img_sz" />
+
+    <TextView
+        android:id="@+id/area"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/name"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/bg_et_w"
+        android:drawableEnd="@mipmap/icon_xzqy"
+        android:gravity="center_vertical"
+        android:text="请选择所属区域"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size15" />
+
+    <com.example.chart.view.PercentRelativeLayout
+        android:id="@+id/r1"
+        android:layout_below="@+id/area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/bg_bg">
+
+        <TextView
+            android:id="@+id/t1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:textColor="@color/grey91"
+            android:textSize="@dimen/size15"
+            android:layout_centerHorizontal="true"
+            android:text="企业基本信息完成情况" />
+        <RelativeLayout
+            app:width_percent="0.33"
+            android:layout_below="@+id/t1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingPrefix">
+            <TextView
+                android:id="@+id/num1"
+                android:text="255"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/size28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_below="@+id/num1"
+                android:text="企业总数"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/grey91"
+                android:textSize="@dimen/size14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            app:width_percent="0.33"
+            android:layout_marginBottom="25dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/t1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingPrefix">
+            <TextView
+                android:id="@+id/num2"
+                android:text="255"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/size28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_below="@+id/num2"
+                android:text="已完成企业数"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/grey91"
+                android:textSize="@dimen/size14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            app:width_percent="0.33"
+            android:layout_below="@+id/t1"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingPrefix">
+            <TextView
+                android:id="@+id/num3"
+                android:text="255"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/black3"
+                android:textSize="@dimen/size28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_below="@+id/num3"
+                android:text="未完成企业数"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/grey91"
+                android:textSize="@dimen/size14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </com.example.chart.view.PercentRelativeLayout>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:layout_below="@+id/r1"
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/transparent"
+            app:srlAccentColor="@color/grey91"
+            app:srlClassicsSpinnerStyle="Scale" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</RelativeLayout>

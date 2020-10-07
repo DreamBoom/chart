@@ -1,4 +1,3 @@
 <resources>
-    <string name="app_name">weatherStation</string>
-    <string name="digit">._/$0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLIMNOPQRSTUVWXYZ</string>
+    <string name="app_name">企业信息</string>
 </resources>

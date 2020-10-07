@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.example.chart.view.PercentRelativeLayout
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/bg_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/t1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@mipmap/icon_xssj"
+            android:drawablePadding="8dp"
+            android:padding="15dp"
+            android:text="企业销售排行"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size15" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/bg_btn_bl"
+            android:drawableEnd="@mipmap/icon_xljt"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:paddingStart="15dp"
+            android:paddingEnd="8dp"
+            android:text="2010-06"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/size15" />
+
+        <TextView
+            android:id="@+id/t2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/t1"
+            android:gravity="center"
+            android:paddingBottom="15dp"
+            android:text="Top"
+            android:textColor="@color/grey91"
+            android:textSize="@dimen/size14"
+            app:width_percent="0.3"
+            tools:ignore="MissingPrefix" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/t1"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:text="企业名称"
+            android:textColor="@color/grey91"
+            android:textSize="@dimen/size14"
+            app:width_percent="0.7"
+            tools:ignore="MissingPrefix" />
+
+        <ImageView
+            android:id="@+id/im1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/t2"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@color/grey" />
+        <TextView
+            android:id="@+id/num1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/im1"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="1"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size14"
+            app:width_percent="0.3"
+            tools:ignore="MissingPrefix" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/im1"
+            android:padding="15dp"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:text="企业名称"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size14"
+            app:width_percent="0.7"
+            tools:ignore="MissingPrefix" />
+        <ImageView
+            android:id="@+id/im2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/num1"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@color/grey" />
+        <TextView
+            android:id="@+id/num2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/im2"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="2"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size14"
+            app:width_percent="0.3"
+            tools:ignore="MissingPrefix" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/im2"
+            android:padding="15dp"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:text="企业名称"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size14"
+            app:width_percent="0.7"
+            tools:ignore="MissingPrefix" />
+        <ImageView
+            android:id="@+id/im3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/num2"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@color/grey" />
+        <TextView
+            android:id="@+id/num3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/im3"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="3"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size14"
+            app:width_percent="0.3"
+            tools:ignore="MissingPrefix" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/im3"
+            android:padding="15dp"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:text="企业名称"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size14"
+            app:width_percent="0.7"
+            tools:ignore="MissingPrefix" />
+        <ImageView
+            android:id="@+id/im4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/num3"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@color/grey" />
+        <TextView
+            android:id="@+id/num4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/im4"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="4"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size14"
+            app:width_percent="0.3"
+            tools:ignore="MissingPrefix" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/im4"
+            android:padding="15dp"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:text="企业名称"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size14"
+            app:width_percent="0.7"
+            tools:ignore="MissingPrefix" />
+        <ImageView
+            android:id="@+id/im5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/num4"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@color/grey" />
+        <TextView
+            android:id="@+id/num5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/im5"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="5"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size14"
+            app:width_percent="0.3"
+            tools:ignore="MissingPrefix" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/im5"
+            android:padding="15dp"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:text="企业名称"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size14"
+            app:width_percent="0.7"
+            tools:ignore="MissingPrefix" />
+    </com.example.chart.view.PercentRelativeLayout>
+</RelativeLayout>

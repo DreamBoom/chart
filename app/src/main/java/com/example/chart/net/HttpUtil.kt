@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON
 import org.xutils.common.Callback
 import org.xutils.http.RequestParams
 import org.xutils.x
-import yfkj.weatherstation.utils.LogUtils
+import com.example.chart.utils.LogUtils
 import java.io.File
 
 
@@ -26,8 +26,6 @@ class HttpUtil {
             for ((key, value) in map) {
                 params.addQueryStringParameter(key, value)
             }
-            params.addQueryStringParameter("version", "v101")
-            params.addQueryStringParameter("fixparam", "android")
         }
         params.connectTimeout = 5000
         return x.http().get(params, callBack)

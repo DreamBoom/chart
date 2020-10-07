@@ -8,8 +8,6 @@ import android.text.TextUtils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.example.chart.utils.ActivityUtils;
-
 /**
  * Created by Jackie on 2016/1/30.
  * 过滤用户输入只能为金额格式
