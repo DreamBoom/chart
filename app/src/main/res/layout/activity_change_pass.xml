@@ -98,6 +98,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
     <TextView
+        android:id="@+id/change"
         android:text="确认"
         android:layout_marginBottom="28dp"
         android:layout_marginTop="50dp"

@@ -5,6 +5,7 @@ import org.xutils.common.Callback
 import org.xutils.http.RequestParams
 import org.xutils.x
 import com.example.chart.utils.LogUtils
+import com.example.chart.utils.UserInfo
 import java.io.File
 
 
@@ -58,11 +59,10 @@ class HttpUtil {
     fun <T> post(url: String, map: Map<String, String>?, callback: Callback.CommonCallback<T>): Callback.Cancelable {
         val params = RequestParams(url)
             if(map!=null){
-                   LogUtils.i(JSON.toJSONString(map))
                 params.bodyContent = JSON.toJSONString(map)
             }
-//        params.addParameter("version", "v101")
-//        params.addQueryStringParameter("fixparam", "android")
+        val token = UserInfo.token
+        params.addHeader("authToken",token!!)
         params.connectTimeout = 5000
         return x.http().post(params, callback)
     }

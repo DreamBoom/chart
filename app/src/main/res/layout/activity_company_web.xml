@@ -1,80 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/grey"
-    tools:context=".activity.ManageActivity">
-
-    <ImageView
-        android:id="@+id/bar"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white" />
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:id="@+id/web_view"
+            android:scrollbars="none"
+            android:layout_below="@+id/bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+    </RelativeLayout>
 
-    <ImageView
+    <RelativeLayout
+        android:id="@+id/f_view4"
+        android:clickable="false"
+        android:background="@color/transparent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/bg2" />
-
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:text="工业企业信息管理"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size17" />
-
+        android:layout_height="match_parent">
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:layout_centerInParent="true"
+            style="@style/SpinKitView.Large.ThreeBounce"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            app:SpinKit_Color="@color/blue" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/no_web"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_centerInParent="true"
+            android:src="@drawable/img_zwsj"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
     <ImageView
         android:id="@+id/setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_gravity="end"
         android:layout_margin="15dp"
         android:padding="10dp"
         android:src="@mipmap/img_sz" />
-
-    <TextView
-        android:id="@+id/area"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@+id/name"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/bg_et_w"
-        android:drawableEnd="@mipmap/icon_xzqy"
-        android:gravity="center_vertical"
-        android:text="请选择所属区域"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size15" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/area">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <include layout="@layout/rank_item" />
-
-            <include layout="@layout/rank_item2" />
-
-            <include layout="@layout/rank_item3" />
-
-            <include layout="@layout/rank_item4" />
-        </LinearLayout>
-    </ScrollView>
     <LinearLayout
         android:id="@+id/show"
         android:visibility="gone"
         android:orientation="vertical"
-        android:layout_alignParentEnd="true"
+        android:layout_gravity="end"
         android:layout_marginEnd="18dp"
         android:layout_marginTop="45dp"
         android:background="@mipmap/img_szk"
@@ -109,4 +93,4 @@
             android:textColor="@color/black45"
             android:textSize="@dimen/size14" />
     </LinearLayout>
-</RelativeLayout>
+</FrameLayout>

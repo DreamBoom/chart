@@ -37,7 +37,7 @@
                         android:id="@android:id/tabs"
                         android:layout_width="match_parent"
                         android:layout_height="50dp">
-                        <include layout="@layout/buttom_bar"/>
+                        <include layout="@layout/buttom_bar2"/>
                     </TabWidget>
                 </LinearLayout>
             </LinearLayout>

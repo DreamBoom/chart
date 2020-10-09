@@ -5,14 +5,8 @@ import android.os.Bundle
 import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
 import com.example.chart.utils.ActivityUtils
-import com.example.chart.utils.Tool
-import com.tencent.mmkv.MMKV
 
 abstract class BaseActivity : AppCompatActivity() {
-    companion object {
-        @SuppressLint("StaticFieldLeak")
-        val mk = MMKV.mmkvWithID(Tool.mmkv, MMKV.SINGLE_PROCESS_MODE)
-    }
     val utils = ActivityUtils(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -3,6 +3,7 @@ package com.example.chart.activity
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import com.chibatching.kotpref.Kotpref
 import org.xutils.x
 import com.example.chart.utils.MyCatchException
 
@@ -13,6 +14,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         x.Ext.init(this)
+        Kotpref.init(this)
         context = applicationContext
         //异常捕获
         val mException = MyCatchException.getInstance()

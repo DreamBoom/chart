@@ -25,7 +25,7 @@
             android:textSize="@dimen/size15" />
 
         <TextView
-            android:id="@+id/time1"
+            android:id="@+id/time2"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
@@ -87,7 +87,7 @@
             tools:ignore="MissingPrefix" />
 
         <TextView
-            android:id="@+id/num11"
+            android:id="@+id/num21"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/im1"
@@ -120,7 +120,7 @@
             tools:ignore="MissingPrefix" />
 
         <TextView
-            android:id="@+id/num12"
+            android:id="@+id/num22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/im2"
@@ -153,7 +153,7 @@
             tools:ignore="MissingPrefix" />
 
         <TextView
-            android:id="@+id/num13"
+            android:id="@+id/num23"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/im3"
@@ -186,7 +186,7 @@
             tools:ignore="MissingPrefix" />
 
         <TextView
-            android:id="@+id/num14"
+            android:id="@+id/num24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/im4"
@@ -219,7 +219,7 @@
             tools:ignore="MissingPrefix" />
 
         <TextView
-            android:id="@+id/num15"
+            android:id="@+id/num25"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/im5"

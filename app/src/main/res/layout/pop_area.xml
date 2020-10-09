@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pop"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#50000000">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="选择所属区域"
+            android:layout_gravity="center"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/size15" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/grey" />
+        <TextView
+            android:id="@+id/all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="全部"
+            android:layout_gravity="center"
+            android:textColor="@color/black3"
+            android:textSize="@dimen/size15" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/grey" />
+        <ListView
+            android:id="@+id/areaList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/grey"
+            android:dividerHeight="0.5dp"
+            android:scrollbars="none" />
+    </LinearLayout>
+</RelativeLayout>
