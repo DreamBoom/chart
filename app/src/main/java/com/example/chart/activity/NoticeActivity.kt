@@ -23,6 +23,7 @@ class NoticeActivity : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_notice
     var page = 1
     override fun initView() {
+        App.instance.addActivity(this)
         val ms = LinearLayoutManager(this)
         ms.orientation = LinearLayoutManager.VERTICAL
         list.layoutManager = ms
@@ -63,6 +64,7 @@ class NoticeActivity : BaseActivity() {
 
             override fun onError(throwable: Throwable, b: Boolean) {
                 super.onError(throwable, b)
+                LogUtils.i(throwable.toString())
                 utils.showToast("网络请求失败，请稍后重试")
                 noData.visibility = View.VISIBLE
             }
@@ -70,6 +72,7 @@ class NoticeActivity : BaseActivity() {
             override fun onFinished() {
                 super.onFinished()
                 refresh.finishRefresh()
+                refresh.finishLoadMore()
             }
         })
     }

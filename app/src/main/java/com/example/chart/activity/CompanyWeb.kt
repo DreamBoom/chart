@@ -19,6 +19,7 @@ class CompanyWeb : BaseActivity() {
     private var url = HttpRequestPort.BASE_URL+"appredirect/gotohtml?htmlname=details&type=android&companyid="
     override fun layoutId(): Int = R.layout.activity_company_web
     override fun initView() {
+        App.instance.addActivity(this)
         val id = intent.getStringExtra("id")!!
         com.example.chart.utils.LogUtils.i(id)
         url += id

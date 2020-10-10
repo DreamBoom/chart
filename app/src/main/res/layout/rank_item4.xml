@@ -17,12 +17,12 @@
             android:id="@+id/t1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@mipmap/icon_xssj"
             android:drawablePadding="8dp"
             android:padding="15dp"
             android:text="企业销售排行"
             android:textColor="@color/black3"
-            android:textSize="@dimen/size15" />
+            android:textSize="@dimen/size15"
+            app:drawableStartCompat="@mipmap/icon_xssj" />
 
 
         <TextView

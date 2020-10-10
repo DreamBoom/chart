@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/transparent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -19,9 +20,9 @@
             android:drawablePadding="8dp"
             android:layout_toStartOf="@+id/im"
             android:textColor="@color/black3"
-            android:drawableStart="@mipmap/img_gyqy"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:drawableStartCompat="@mipmap/img_gyqy" />
         <ImageView
             android:id="@+id/im"
             android:padding="15dp"

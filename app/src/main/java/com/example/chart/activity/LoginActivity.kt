@@ -1,33 +1,26 @@
 package com.example.chart.activity
 
-import android.annotation.SuppressLint
-import android.os.Bundle
 import android.text.TextUtils
 import android.view.KeyEvent
-import android.widget.TabHost
-import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
-import com.chibatching.kotpref.KotprefModel
 import com.example.chart.MainActivity
 import com.example.chart.MainActivity2
 import com.example.chart.R
 import com.example.chart.bean.LoginBean
 import com.example.chart.net.BaseHttpCallBack
 import com.example.chart.net.HttpRequestPort
-import com.example.chart.utils.*
+import com.example.chart.utils.LogUtils
+import com.example.chart.utils.UserInfo
 import com.pawegio.kandroid.startActivity
 import kotlinx.android.synthetic.main.activity_login.*
-import java.util.*
 import kotlin.system.exitProcess
 
-class LoginActivity : AppCompatActivity() {
-    var utils = ActivityUtils(this)
-
+class LoginActivity : BaseActivity() {
     private var firstTime: Long = 0
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+    override fun layoutId(): Int = R.layout.activity_login
+    override fun initView() {
+        App.instance.addActivity(this)
         sure.setOnClickListener {
             val name = name.text.toString()
             val pass = pass.text.toString()
@@ -93,6 +86,7 @@ class LoginActivity : AppCompatActivity() {
                 firstTime = secondTime
                 return false
             } else {
+                App.instance.removeAllActivity()
                 exitProcess(0)
             }
         }

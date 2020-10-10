@@ -23,6 +23,7 @@ class CompanyWeb1 : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_company_web
 
     override fun initView() {
+        App.instance.addActivity(this)
         UserInfo.companyId
         url += UserInfo.companyId
         agentWeb = AgentWeb.with(this)

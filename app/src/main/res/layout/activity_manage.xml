@@ -43,11 +43,11 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:background="@drawable/bg_et_w"
-        android:drawableEnd="@mipmap/icon_xzqy"
         android:gravity="center_vertical"
         android:text="请选择所属区域"
         android:textColor="@color/white"
-        android:textSize="@dimen/size15" />
+        android:textSize="@dimen/size15"
+        app:drawableEndCompat="@mipmap/icon_xzqy" />
 
     <com.example.chart.view.PercentRelativeLayout
         android:id="@+id/r1"

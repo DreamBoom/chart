@@ -2,45 +2,51 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.NoticeActivity">
+
     <TextView
         android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
         android:text="通知公告"
         android:textColor="@color/black3"
-        android:textSize="@dimen/size17"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"/>
+        android:textSize="@dimen/size17" />
+
     <ImageView
-        android:background="@color/grey"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"/>
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refresh"
+        android:id="@+id/line"
         android:layout_below="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="1dp"
+        android:background="@color/grey" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/line">
+
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@color/transparent"
             app:srlAccentColor="@color/black"
             app:srlClassicsSpinnerStyle="Scale" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list"
-            android:divider="@color/grey"
-            android:dividerHeight="0.5dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
     <include
         android:id="@+id/noData"
-        android:visibility="gone"
-        android:layout_below="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        layout="@layout/view_no_data"/>
+        layout="@layout/view_no_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 </RelativeLayout>

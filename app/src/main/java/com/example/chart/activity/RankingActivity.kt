@@ -17,7 +17,6 @@ import com.example.chart.adapter.AreaAdapter
 import com.example.chart.bean.*
 import com.example.chart.net.BaseHttpCallBack
 import com.example.chart.net.HttpRequestPort
-import com.example.chart.utils.LogUtils
 import com.example.chart.utils.UserInfo
 import com.jzxiang.pickerview.TimePickerDialog
 import com.jzxiang.pickerview.data.Type
@@ -25,8 +24,6 @@ import com.jzxiang.pickerview.listener.OnDateSetListener
 import com.pawegio.kandroid.startActivity
 import kotlinx.android.synthetic.main.activity_ranking.*
 import kotlinx.android.synthetic.main.rank_item.*
-import kotlinx.android.synthetic.main.rank_item.num11
-import kotlinx.android.synthetic.main.rank_item.num12
 import kotlinx.android.synthetic.main.rank_item2.*
 import kotlinx.android.synthetic.main.rank_item3.*
 import kotlinx.android.synthetic.main.rank_item4.*
@@ -50,6 +47,7 @@ class RankingActivity : BaseActivity(), OnDateSetListener {
     var chooseTime2 = ""
     var chooseTime3 = ""
     override fun initView() {
+        App.instance.addActivity(this)
         areaAdapter = AreaAdapter(this, dataList, R.layout.area_item)
         val curDate = Date(System.currentTimeMillis())
         time1.text = sf.format(curDate)

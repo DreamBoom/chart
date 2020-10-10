@@ -4,6 +4,7 @@ import android.app.TabActivity
 import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
+import com.example.chart.activity.App
 import com.example.chart.activity.CompanyWeb
 import com.example.chart.activity.CompanyWeb1
 import com.example.chart.activity.NoticeActivity
@@ -68,6 +69,7 @@ class MainActivity2 : TabActivity() {
                 firstTime = secondTime
                 return false
             } else {
+                App.instance.removeAllActivity()
                 exitProcess(0)
             }
         }

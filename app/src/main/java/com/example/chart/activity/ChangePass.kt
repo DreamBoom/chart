@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_manage.*
 class ChangePass : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_change_pass
     override fun initView() {
+        App.instance.addActivity(this)
         change.setOnClickListener {
             val old = oldPass.text.toString()
             val new = newPass.text.toString()

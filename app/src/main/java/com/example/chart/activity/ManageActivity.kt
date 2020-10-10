@@ -31,6 +31,7 @@ class ManageActivity : BaseActivity() {
     override fun layoutId(): Int =R.layout.activity_manage
 
     override fun initView() {
+        App.instance.addActivity(this)
         areaAdapter = AreaAdapter(this, dataList, R.layout.area_item)
         val ms = LinearLayoutManager(this)
         ms.orientation = LinearLayoutManager.VERTICAL

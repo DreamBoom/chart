@@ -29,7 +29,7 @@ class HttpRequestPort {
     private val company = "appjars/findCompany"
     private val companyNum = "appjars/companyCount"
     private val pass = "appjars/updatePassword"
-    private val notice = "noticelist/selectListCompanyDto"
+    private val notice = "appjars/selectListNoticelist"
     private val noticeInfo = "appjars/noticelistfindOne"
     private val httpUtil: HttpUtil = HttpUtil()
     private var map: MutableMap<String, String>? = null

@@ -6,10 +6,82 @@
     android:layout_height="match_parent"
     tools:context=".activity.NoticeInfoActivity">
     <TextView
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:text="通知详情"
+        android:textColor="@color/black3"
+        android:textSize="@dimen/size17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:id="@+id/back"
+        android:padding="15dp"
+        android:src="@mipmap/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:id="@+id/line"
+        android:layout_below="@+id/back"
+        android:background="@color/grey"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <TextView
+        android:id="@+id/name"
+        android:text="无标题"
+        android:layout_below="@+id/line"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/black3"
+        android:textSize="@dimen/size20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/user"
+        android:layout_below="@+id/name"
+        android:layout_marginStart="10dp"
+        android:text="无"
+        android:drawablePadding="5dp"
+        android:padding="10dp"
+        android:textSize="@dimen/size14"
+        android:textColor="@color/grey91"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:drawableStartCompat="@mipmap/icon_qylxr" />
+    <TextView
+        android:id="@+id/time"
+        android:layout_toEndOf="@+id/user"
+        android:padding="10dp"
+        android:text="无"
+        android:layout_marginEnd="15dp"
+        android:layout_below="@+id/name"
+        android:layout_marginStart="10dp"
+        android:drawablePadding="5dp"
+        android:textSize="@dimen/size14"
+        android:textColor="@color/grey91"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:drawableStartCompat="@mipmap/icon_time" />
+    <TextView
+        android:id="@+id/fj"
+        android:layout_marginBottom="15dp"
+        android:layout_below="@+id/user"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:text="无"
+        android:background="@drawable/bg_grey"
+        android:drawablePadding="5dp"
+        android:textColor="@color/black45"
+        android:textSize="@dimen/size14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:drawableStartCompat="@mipmap/img_fj" />
+    <TextView
         android:id="@+id/info"
+        android:layout_below="@+id/fj"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="5dp"
         android:layout_marginEnd="15dp"
         android:padding="10dp"
         android:layout_marginBottom="20dp"
