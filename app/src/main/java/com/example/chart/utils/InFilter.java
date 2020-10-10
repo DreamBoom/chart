@@ -16,6 +16,11 @@ import com.example.chart.utils.ActivityUtils;
  */
 
 public class InFilter implements InputFilter {
+    public static boolean pass(String pass) {
+        String passRegex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
+        return !TextUtils.isEmpty(pass) && pass.matches(passRegex);
+    }
+
     Pattern mPattern;
 
     //输入的最大金额

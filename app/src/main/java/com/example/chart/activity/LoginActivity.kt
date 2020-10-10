@@ -34,6 +34,7 @@ class LoginActivity : BaseActivity() {
                 startActivity<MainActivity2>()
             }
         }
+        bg.setOnClickListener { utils.hideSoftKeyboard() }
     }
 
     private fun login(name: String, pass: String) {

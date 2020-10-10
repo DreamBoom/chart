@@ -53,7 +53,10 @@ class ManageActivity : BaseActivity() {
         list.adapter = adapter
         getArea()
         area.setOnClickListener { showPopup() }
-
+        bg.setOnClickListener {  if (show.isVisible) {
+            bg.visibility = View.GONE
+            show.visibility = View.GONE
+        }  }
         setting.setOnClickListener {
             if (show.isVisible) {
                 bg.visibility = View.GONE
@@ -75,7 +78,7 @@ class ManageActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        getData()
+        refresh.autoRefresh()
         getNum()
     }
     private fun getNum() {
@@ -97,6 +100,7 @@ class ManageActivity : BaseActivity() {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<CompanyBean>() {})
                 if(bean.code == 200){
+                    listData.clear()
                     listData.addAll(bean.result.list)
                     adapter!!.notifyDataSetChanged()
                 }
@@ -134,7 +138,7 @@ class ManageActivity : BaseActivity() {
         popupWindow!!.contentView = v
         popupWindow!!.setBackgroundDrawable(ColorDrawable(0x00000000))
         popupWindow!!.isClippingEnabled = true
-        popupWindow!!.showAsDropDown(bar)
+        popupWindow!!.showAsDropDown(name)
         val pop = v.findViewById<RelativeLayout>(R.id.pop)
         val list = v.findViewById<ListView>(R.id.areaList)
         val all = v.findViewById<TextView>(R.id.all)

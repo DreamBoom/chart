@@ -7,15 +7,18 @@ import com.example.chart.bean.ChangePassBean
 import com.example.chart.bean.CompanyNumBean
 import com.example.chart.net.BaseHttpCallBack
 import com.example.chart.net.HttpRequestPort
+import com.example.chart.utils.InFilter
 import com.example.chart.utils.LogUtils
 import com.example.chart.utils.UserInfo
 import kotlinx.android.synthetic.main.activity_change_pass.*
 
 class ChangePass : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_change_pass
+
     override fun initView() {
         App.instance.addActivity(this)
         bg.setOnClickListener { utils.hideSoftKeyboard() }
+
         change.setOnClickListener {
             val old = oldPass.text.toString()
             val new = newPass.text.toString()
@@ -31,6 +34,14 @@ class ChangePass : BaseActivity() {
             }
             if(TextUtils.isEmpty(new)){
                 utils.showToast("请输入新密码")
+                return@setOnClickListener
+            }
+            if(new.length<6){
+                utils.showToast("新密码长度不得低于6位")
+                return@setOnClickListener
+            }
+            if(!InFilter.pass(new)){
+                utils.showToast("新密码必须是数字和字母组合")
                 return@setOnClickListener
             }
             if(TextUtils.isEmpty(newPass)){

@@ -13,6 +13,7 @@ import com.example.chart.bean.NoticeInfoBean
 import com.example.chart.net.BaseHttpCallBack
 import com.example.chart.net.HttpRequestPort
 import com.example.chart.utils.StatusBarUtil
+import com.gyf.immersionbar.ImmersionBar
 import com.zzhoujay.richtext.RichText
 import com.zzhoujay.richtext.callback.OnUrlClickListener
 import kotlinx.android.synthetic.main.activity_notice_info.*
@@ -22,6 +23,11 @@ class NoticeInfoActivity : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_notice_info
     var url = ""
     override fun initView() {
+        ImmersionBar.with(this)
+            .statusBarColor(R.color.transparent) //状态栏颜色，不写默认透明色
+            .statusBarDarkFont(true) //状态栏字体是深色，不写默认为亮色
+            .fitsSystemWindows(true) //解决状态栏和布局重叠问题，任选其一，默认为false，当为true时一定要指定statusBarColor()，不然状态栏为透明色，还有一些重载方法
+            .init() //必须调用方可应用以上所配置的参数
         App.instance.addActivity(this)
         utils.changeStatusBlack(true,window)
         val id = intent.getStringExtra("id")

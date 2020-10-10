@@ -1,24 +1,20 @@
 package com.example.chart.activity
 
 import android.view.View
-import android.view.WindowManager
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
 import com.example.chart.R
 import com.example.chart.adapter.NoticeAdapter
-import com.example.chart.bean.CompanyNumBean
 import com.example.chart.bean.NoticListBean
 import com.example.chart.net.BaseHttpCallBack
 import com.example.chart.net.HttpRequestPort
 import com.example.chart.utils.LogUtils
-import com.example.chart.utils.StatusBarUtil
 import com.example.chart.utils.UserInfo
-import kotlinx.android.synthetic.main.activity_manage.*
+import com.gyf.immersionbar.ImmersionBar
+import kotlinx.android.synthetic.main.activity_company_web.*
 import kotlinx.android.synthetic.main.activity_notice.*
-import kotlinx.android.synthetic.main.activity_notice.list
-import kotlinx.android.synthetic.main.activity_notice.refresh
+
 
 class NoticeActivity : BaseActivity() {
     var adapter: NoticeAdapter? = null
@@ -26,7 +22,12 @@ class NoticeActivity : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_notice
     var page = 1
     override fun initView() {
-        utils.changeStatusBlack(true,window)
+        ImmersionBar.with(this)
+            .statusBarColor(R.color.transparent) //状态栏颜色，不写默认透明色
+            .statusBarDarkFont(true) //状态栏字体是深色，不写默认为亮色
+            .fitsSystemWindows(true) //解决状态栏和布局重叠问题，任选其一，默认为false，当为true时一定要指定statusBarColor()，不然状态栏为透明色，还有一些重载方法
+            .init() //必须调用方可应用以上所配置的参数
+
         App.instance.addActivity(this)
         val ms = LinearLayoutManager(this)
         ms.orientation = LinearLayoutManager.VERTICAL
@@ -48,6 +49,7 @@ class NoticeActivity : BaseActivity() {
     }
 
     private fun getData() {
+        LogUtils.i(page)
         val companyId = UserInfo.companyId
         HttpRequestPort.instance.notice(companyId!!, "$page", object : BaseHttpCallBack(this) {
             override fun success(data: String) {
@@ -56,7 +58,7 @@ class NoticeActivity : BaseActivity() {
                 if (bean.code == 200) {
                     if (bean.result.list.size > 0) {
                         noData.visibility = View.GONE
-                        if(page == 1){
+                        if (page == 1) {
                             listData.clear()
                         }
                         page++
@@ -66,7 +68,7 @@ class NoticeActivity : BaseActivity() {
                             noData.visibility = View.VISIBLE
                         }
                     }
-                }else{
+                } else {
                     utils.showToast(bean.msg)
                 }
             }

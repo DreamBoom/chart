@@ -2,6 +2,7 @@ package com.example.chart.activity
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.ColorDrawable
+import android.text.TextUtils
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import com.example.chart.adapter.AreaAdapter
 import com.example.chart.bean.*
 import com.example.chart.net.BaseHttpCallBack
 import com.example.chart.net.HttpRequestPort
+import com.example.chart.utils.LogUtils
 import com.example.chart.utils.UserInfo
 import com.jzxiang.pickerview.TimePickerDialog
 import com.jzxiang.pickerview.data.Type
@@ -119,22 +121,6 @@ class RankingActivity : BaseActivity(), OnDateSetListener {
             chooseTimeType = 2
             chooseMonth!!.show(supportFragmentManager, "year_month")
         }
-        setting.setOnClickListener {
-            if (show.isVisible) {
-                show.visibility = View.GONE
-            } else {
-                show.visibility = View.VISIBLE
-            }
-        }
-        exitPop()
-        out.setOnClickListener {
-            exitPop!!.showAtLocation(setting, Gravity.NO_GRAVITY, 0, 0)
-        }
-        changePass.setOnClickListener {
-            show.visibility = View.GONE
-            startActivity<ChangePass>()
-        }
-
     }
 
     override fun onResume() {
@@ -180,39 +166,116 @@ class RankingActivity : BaseActivity(), OnDateSetListener {
     }
 
     private fun getOne() {
-        HttpRequestPort.instance.out(chooseArea, chooseTime1, object : BaseHttpCallBack(this) {
+        HttpRequestPort.instance.out(chooseArea, chooseTime1.trim(), object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
+                LogUtils.i(chooseTime1.trim())
+                LogUtils.i(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<OutBean>() {})
                 if (bean.code == 200) {
+                    if(bean.result.size<1){
+                        num11.text = "暂无"
+                        num12.text = "暂无"
+                        num13.text = "暂无"
+                        num14.text = "暂无"
+                        num15.text = "暂无"
+                        return
+                    }
                     for (i in 0 until bean.result.size) {
                         when (i) {
-                            0 -> num11.text = bean.result[i].companyName
-                            1 -> num12.text = bean.result[i].companyName
-                            2 -> num13.text = bean.result[i].companyName
-                            3 -> num14.text = bean.result[i].companyName
-                            4 -> num15.text = bean.result[i].companyName
+                            0 -> {
+                                if(TextUtils.isEmpty(bean.result[i].companyName)){
+                                    num11.text = "暂无"
+                                }else{
+                                    num11.text = bean.result[i].companyName
+                                }
+                            }
+                            1 -> {
+                                if(TextUtils.isEmpty(bean.result[i].companyName)){
+                                    num12.text = "暂无"
+                                }else{
+                                    num12.text = bean.result[i].companyName
+                                }
+                            }
+                            2 -> {
+                                if(TextUtils.isEmpty(bean.result[i].companyName)){
+                                    num13.text = "暂无"
+                                }else{
+                                    num13.text = bean.result[i].companyName
+                                }
+                            }
+                            3 -> {
+                                if(TextUtils.isEmpty(bean.result[i].companyName)){
+                                    num14.text = "暂无"
+                                }else{
+                                    num14.text = bean.result[i].companyName
+                                }
+                            }
+                            4 -> {
+                                if(TextUtils.isEmpty(bean.result[i].companyName)){
+                                    num15.text = "暂无"
+                                }else{
+                                    num15.text = bean.result[i].companyName
+                                }
+                            }
                         }
                     }
-
                 }
             }
         })
     }
 
     private fun getTwo() {
-        HttpRequestPort.instance.inMoney(chooseArea, chooseTime2, object : BaseHttpCallBack(this) {
+        HttpRequestPort.instance.inMoney(chooseArea, chooseTime2.trim(), object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<InMoney>() {})
                 if (bean.status == 0) {
+                    if(bean.data.size<1){
+                        num21.text = "暂无"
+                        num22.text = "暂无"
+                        num23.text = "暂无"
+                        num24.text = "暂无"
+                        num25.text = "暂无"
+                        return
+                    }
                     for (i in 0 until bean.data.size) {
                         when (i) {
-                            0 -> num21.text = bean.data[i].companyName
-                            1 -> num22.text = bean.data[i].companyName
-                            2 -> num23.text = bean.data[i].companyName
-                            3 -> num24.text = bean.data[i].companyName
-                            4 -> num25.text = bean.data[i].companyName
+                            0 -> {
+                                if(TextUtils.isEmpty(bean.data[i].companyName)){
+                                    num21.text = "暂无"
+                                }else{
+                                    num21.text = bean.data[i].companyName
+                                }
+                            }
+                            1 -> {
+                                if(TextUtils.isEmpty(bean.data[i].companyName)){
+                                    num22.text = "暂无"
+                                }else{
+                                    num22.text = bean.data[i].companyName
+                                }
+                            }
+                            2 -> {
+                                if(TextUtils.isEmpty(bean.data[i].companyName)){
+                                    num23.text = "暂无"
+                                }else{
+                                    num23.text = bean.data[i].companyName
+                                }
+                            }
+                            3 -> {
+                                if(TextUtils.isEmpty(bean.data[i].companyName)){
+                                    num24.text = "暂无"
+                                }else{
+                                    num24.text = bean.data[i].companyName
+                                }
+                            }
+                            4 -> {
+                                if(TextUtils.isEmpty(bean.data[i].companyName)){
+                                    num25.text = "暂无"
+                                }else{
+                                    num25.text = bean.data[i].companyName
+                                }
+                            }
                         }
                     }
 
@@ -222,21 +285,58 @@ class RankingActivity : BaseActivity(), OnDateSetListener {
     }
 
     private fun getThree() {
-        HttpRequestPort.instance.money(chooseArea, chooseTime1, object : BaseHttpCallBack(this) {
+        HttpRequestPort.instance.money(chooseArea, chooseTime1.trim(), object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<MoneyBean>() {})
                 if (bean.code == 200) {
+                    if(bean.result.size<1){
+                        num31.text = "暂无"
+                        num32.text = "暂无"
+                        num33.text = "暂无"
+                        num34.text = "暂无"
+                        num35.text = "暂无"
+                        return
+                    }
                     for (i in 0 until bean.result.size) {
                         when (i) {
-                            0 -> num31.text = bean.result[i].companyName
-                            1 -> num32.text = bean.result[i].companyName
-                            2 -> num33.text = bean.result[i].companyName
-                            3 -> num34.text = bean.result[i].companyName
-                            4 -> num35.text = bean.result[i].companyName
+                            0 -> {
+                                if(TextUtils.isEmpty(bean.result[i].companyName)){
+                                    num31.text = "暂无"
+                                }else{
+                                    num31.text = bean.result[i].companyName
+                                }
+                            }
+                            1 -> {
+                                if(TextUtils.isEmpty(bean.result[i].companyName)){
+                                    num32.text = "暂无"
+                                }else{
+                                    num32.text = bean.result[i].companyName
+                                }
+                            }
+                            2 -> {
+                                if(TextUtils.isEmpty(bean.result[i].companyName)){
+                                    num33.text = "暂无"
+                                }else{
+                                    num33.text = bean.result[i].companyName
+                                }
+                            }
+                            3 -> {
+                                if(TextUtils.isEmpty(bean.result[i].companyName)){
+                                    num34.text = "暂无"
+                                }else{
+                                    num34.text = bean.result[i].companyName
+                                }
+                            }
+                            4 -> {
+                                if(TextUtils.isEmpty(bean.result[i].companyName)){
+                                    num35.text = "暂无"
+                                }else{
+                                    num35.text = bean.result[i].companyName
+                                }
+                            }
                         }
                     }
-
                 }
             }
         })
@@ -247,17 +347,52 @@ class RankingActivity : BaseActivity(), OnDateSetListener {
             override fun success(data: String) {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<KjBean>() {})
-                if (bean.code == 200) {
-                    for (i in 0 until bean.result.size) {
-                        when (i) {
-                            0 -> num41.text = bean.result[i].companyName
-                            1 -> num42.text = bean.result[i].companyName
-                            2 -> num43.text = bean.result[i].companyName
-                            3 -> num44.text = bean.result[i].companyName
-                            4 -> num45.text = bean.result[i].companyName
+                if(bean.result.size<1){
+                    num41.text = "暂无"
+                    num42.text = "暂无"
+                    num43.text = "暂无"
+                    num44.text = "暂无"
+                    num45.text = "暂无"
+                    return
+                }
+                for (i in 0 until bean.result.size) {
+                    when (i) {
+                        0 -> {
+                            if(TextUtils.isEmpty(bean.result[i].companyName)){
+                                num41.text = "暂无"
+                            }else{
+                                num41.text = bean.result[i].companyName
+                            }
+                        }
+                        1 -> {
+                            if(TextUtils.isEmpty(bean.result[i].companyName)){
+                                num42.text = "暂无"
+                            }else{
+                                num42.text = bean.result[i].companyName
+                            }
+                        }
+                        2 -> {
+                            if(TextUtils.isEmpty(bean.result[i].companyName)){
+                                num43.text = "暂无"
+                            }else{
+                                num43.text = bean.result[i].companyName
+                            }
+                        }
+                        3 -> {
+                            if(TextUtils.isEmpty(bean.result[i].companyName)){
+                                num44.text = "暂无"
+                            }else{
+                                num44.text = bean.result[i].companyName
+                            }
+                        }
+                        4 -> {
+                            if(TextUtils.isEmpty(bean.result[i].companyName)){
+                                num45.text = "暂无"
+                            }else{
+                                num45.text = bean.result[i].companyName
+                            }
                         }
                     }
-
                 }
             }
         })
@@ -295,29 +430,6 @@ class RankingActivity : BaseActivity(), OnDateSetListener {
             getThree()
             getFour()
             popupWindow!!.dismiss()
-        }
-    }
-
-    //退出弹窗
-    var exitPop:PopupWindow?=null
-    @SuppressLint("InflateParams")
-    private fun exitPop() {
-        val view = LayoutInflater.from(this).inflate(R.layout.pop_out, null)
-        val sure = view.findViewById<TextView>(R.id.sure)
-        val cancel = view.findViewById<TextView>(R.id.cancel)
-        exitPop = PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT, true)
-        exitPop!!.isTouchable = true
-        exitPop!!.isOutsideTouchable = false
-        val dw = ColorDrawable(0x00000000)
-        exitPop!!.setBackgroundDrawable(dw)
-        sure.setOnClickListener {
-            UserInfo.token = ""
-            startActivity<LoginActivity>()
-            finish()
-        }
-        cancel.setOnClickListener {
-            exitPop!!.dismiss()
         }
     }
 }

@@ -22,19 +22,12 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        android:text="工业企业信息管理"
+        android:layout_marginTop="35dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="统计分析"
         android:textColor="@color/white"
         android:textSize="@dimen/size17" />
-
-    <ImageView
-        android:id="@+id/setting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="15dp"
-        android:padding="10dp"
-        android:src="@mipmap/img_sz" />
 
     <TextView
         android:id="@+id/area"
@@ -43,7 +36,7 @@
         android:layout_below="@+id/name"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/bg_et_w"
         android:gravity="center_vertical"
         android:text="请选择所属区域"
@@ -70,43 +63,4 @@
             <include layout="@layout/rank_item4" />
         </LinearLayout>
     </ScrollView>
-    <LinearLayout
-        android:id="@+id/show"
-        android:visibility="gone"
-        android:orientation="vertical"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="18dp"
-        android:layout_marginTop="45dp"
-        android:background="@mipmap/img_szk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/changePass"
-            android:text="修改密码"
-            android:layout_marginTop="6dp"
-            android:paddingStart="5dp"
-            android:drawablePadding="5dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:drawableStart="@mipmap/icon_xgmm"
-            android:textColor="@color/black45"
-            android:textSize="@dimen/size14"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:id="@+id/out"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:drawableStart="@mipmap/icon_tcdl"
-            android:drawablePadding="5dp"
-            android:gravity="center"
-            android:paddingStart="5dp"
-            android:text="退出登录"
-            android:textColor="@color/black45"
-            android:textSize="@dimen/size14" />
-    </LinearLayout>
 </RelativeLayout>

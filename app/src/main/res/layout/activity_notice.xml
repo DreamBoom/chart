@@ -6,13 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.NoticeActivity">
-
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:paddingTop="35dp"
-        android:gravity="center_horizontal"
+        android:layout_height="48dp"
+        android:gravity="center"
         android:text="通知公告"
         android:textColor="@color/black3"
         android:textSize="@dimen/size17" />

@@ -21,20 +21,19 @@ import com.example.chart.utils.UserInfo
 import com.just.agentweb.AgentWeb
 import com.pawegio.kandroid.runDelayed
 import com.pawegio.kandroid.startActivity
-import kotlinx.android.synthetic.main.activity_company_web.*
+import kotlinx.android.synthetic.main.activity_company_web1.*
 
 class CompanyWeb1 : BaseActivity() {
     private var agentWeb: AgentWeb? = null
     //企业
     private var url = HttpRequestPort.BASE_URL+"appredirect/gotohtml?htmlname=myinfo&type=android&companyid="
-    override fun layoutId(): Int = R.layout.activity_company_web
+    override fun layoutId(): Int = R.layout.activity_company_web1
     override fun onResume() {
         super.onResume()
         agentWeb!!.urlLoader.loadUrl(url)
     }
     override fun initView() {
         bar.layoutParams.height = utils.getStatusBarHeight(this)
-        utils.changeStatusBlack(true, window)
         App.instance.addActivity(this)
         UserInfo.companyId
         url += UserInfo.companyId
@@ -58,7 +57,10 @@ class CompanyWeb1 : BaseActivity() {
         no_web.setOnClickListener {
             agentWeb!!.urlLoader.loadUrl(url)
         }
-
+        bg.setOnClickListener {  if (show.isVisible) {
+            bg.visibility = View.GONE
+            show.visibility = View.GONE
+        }  }
         setting.setOnClickListener {
             if (show.isVisible) {
                 bg.visibility = View.GONE

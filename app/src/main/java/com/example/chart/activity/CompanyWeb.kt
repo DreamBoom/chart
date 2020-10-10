@@ -20,6 +20,7 @@ class CompanyWeb : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_company_web
     override fun initView() {
         App.instance.addActivity(this)
+        bar.layoutParams.height = utils.getStatusBarHeight(this)
         val id = intent.getStringExtra("id")!!
         url += id
         agentWeb = AgentWeb.with(this)
