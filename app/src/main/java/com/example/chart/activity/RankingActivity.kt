@@ -2,6 +2,8 @@ package com.example.chart.activity
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.ColorDrawable
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
@@ -34,9 +36,9 @@ import kotlin.collections.ArrayList
 class RankingActivity : BaseActivity(), OnDateSetListener {
     override fun layoutId(): Int = R.layout.activity_ranking
     var areaAdapter: AreaAdapter? = null
-
     @SuppressLint("SimpleDateFormat")
     private var sf = SimpleDateFormat("yyyy - MM")
+    @SuppressLint("SimpleDateFormat")
     private var sf1 = SimpleDateFormat("yyyy")
     val dataList = ArrayList<AreaBean.ResultBean.ListBean>()
     var chooseArea = ""
@@ -124,15 +126,19 @@ class RankingActivity : BaseActivity(), OnDateSetListener {
                 show.visibility = View.VISIBLE
             }
         }
+        exitPop()
         out.setOnClickListener {
-            UserInfo.token = ""
-            startActivity<LoginActivity>()
-            finish()
+            exitPop!!.showAtLocation(setting, Gravity.NO_GRAVITY, 0, 0)
         }
         changePass.setOnClickListener {
             show.visibility = View.GONE
             startActivity<ChangePass>()
         }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         getOne()
         getTwo()
         getThree()
@@ -289,6 +295,29 @@ class RankingActivity : BaseActivity(), OnDateSetListener {
             getThree()
             getFour()
             popupWindow!!.dismiss()
+        }
+    }
+
+    //退出弹窗
+    var exitPop:PopupWindow?=null
+    @SuppressLint("InflateParams")
+    private fun exitPop() {
+        val view = LayoutInflater.from(this).inflate(R.layout.pop_out, null)
+        val sure = view.findViewById<TextView>(R.id.sure)
+        val cancel = view.findViewById<TextView>(R.id.cancel)
+        exitPop = PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT, true)
+        exitPop!!.isTouchable = true
+        exitPop!!.isOutsideTouchable = false
+        val dw = ColorDrawable(0x00000000)
+        exitPop!!.setBackgroundDrawable(dw)
+        sure.setOnClickListener {
+            UserInfo.token = ""
+            startActivity<LoginActivity>()
+            finish()
+        }
+        cancel.setOnClickListener {
+            exitPop!!.dismiss()
         }
     }
 }

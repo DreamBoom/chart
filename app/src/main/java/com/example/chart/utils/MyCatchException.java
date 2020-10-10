@@ -57,16 +57,16 @@ public class MyCatchException implements Thread.UncaughtExceptionHandler {
         String result = writer.toString();
         final String msg= result ;
 
-        new Thread() {
-            @Override
-            public void run() {
-                // Toast 显示需要出现在一个线程的消息队列中
-                Looper.prepare();
-               //将异常记录到本地的数据库或者文件中.或者直接提交到后台服务器
-                LogUtils.INSTANCE.i("全局异常"+msg);
-                Looper.loop();
-            }
-        }.start();
+//        new Thread() {
+//            @Override
+//            public void run() {
+//                // Toast 显示需要出现在一个线程的消息队列中
+//               // Looper.prepare();
+//               //将异常记录到本地的数据库或者文件中.或者直接提交到后台服务器
+//                LogUtils.INSTANCE.i("全局异常"+msg);
+//               // Looper.loop();
+//            }
+//        }.start();
         return true;
     }
 
@@ -76,22 +76,18 @@ public class MyCatchException implements Thread.UncaughtExceptionHandler {
             // 如果用户没有处理则让系统默认的异常处理器来处理
             mDefaultException.uncaughtException(thread, ex);
         } else { //否则自己进行处理
-//            Intent intent=new Intent();
-//            intent.setAction("ACTION_RK_REBOOT");
-//            Objects.requireNonNull(App.Companion.getContext()).sendBroadcast(intent,null);
+            try {  //Sleep 来让线程停止一会是为了显示Toast信息给用户，然后Kill程序
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                LogUtils.INSTANCE.i("全局异常"+e.getMessage());
 
-//            try {  //Sleep 来让线程停止一会是为了显示Toast信息给用户，然后Kill程序
-//                Thread.sleep(3000);
-//            } catch (InterruptedException e) {
-//                LogUtils.INSTANCE.i("全局异常"+e.getMessage());
-//
-//            }catch (Exception e){
-//                LogUtils.INSTANCE.i("全局异常"+e.getMessage());
-//
-//            }
-//            //如果不关闭程序,会导致程序无法启动,需要完全结束进程才能重新启动
-//            android.os.Process.killProcess(android.os.Process.myPid());
-//            System.exit(10);
+            }catch (Exception e){
+                LogUtils.INSTANCE.i("全局异常"+e.getMessage());
+
+            }
+            //如果不关闭程序,会导致程序无法启动,需要完全结束进程才能重新启动
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(0);
         }
 
     }

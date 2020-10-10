@@ -10,12 +10,12 @@ import com.example.chart.net.HttpRequestPort
 import com.example.chart.utils.LogUtils
 import com.example.chart.utils.UserInfo
 import kotlinx.android.synthetic.main.activity_change_pass.*
-import kotlinx.android.synthetic.main.activity_manage.*
 
 class ChangePass : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_change_pass
     override fun initView() {
         App.instance.addActivity(this)
+        bg.setOnClickListener { utils.hideSoftKeyboard() }
         change.setOnClickListener {
             val old = oldPass.text.toString()
             val new = newPass.text.toString()
@@ -30,11 +30,11 @@ class ChangePass : BaseActivity() {
                 return@setOnClickListener
             }
             if(TextUtils.isEmpty(new)){
-                utils.showToast("请输入原密码")
+                utils.showToast("请输入新密码")
                 return@setOnClickListener
             }
             if(TextUtils.isEmpty(newPass)){
-                utils.showToast("请输入原密码")
+                utils.showToast("请确认新密码")
                 return@setOnClickListener
             }
             if(new!=newPass){
@@ -43,6 +43,7 @@ class ChangePass : BaseActivity() {
             }
             changePass(old,newPass)
         }
+        back.setOnClickListener { finish() }
     }
 
     private fun changePass(old:String,newPass:String) {

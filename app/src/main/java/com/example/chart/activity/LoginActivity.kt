@@ -67,6 +67,7 @@ class LoginActivity : BaseActivity() {
 
             override fun onError(throwable: Throwable, b: Boolean) {
                 super.onError(throwable, b)
+                LogUtils.i(throwable.toString())
                 utils.showToast("登录失败,请检查网络或重新登录")
             }
 

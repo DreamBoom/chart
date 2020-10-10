@@ -14,10 +14,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.Window
+import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.RelativeLayout
 import android.widget.Toast
@@ -211,7 +208,12 @@ class ActivityUtils {
     fun getProgress(context: Context) {
         dialog = Dialog(context, R.style.MyDialog)
         dialog!!.show()
-        dialog!!.window!!.setContentView(LayoutInflater.from(context).inflate(R.layout.progress, null))
+        dialog!!.window!!.setContentView(
+            LayoutInflater.from(context).inflate(
+                R.layout.progress,
+                null
+            )
+        )
         dialog!!.setCancelable(true)
     }
 
@@ -249,8 +251,10 @@ class ActivityUtils {
 
     fun getView(layoutId: Int): View {
         val activity = activity
-        return LayoutInflater.from(activity).inflate(layoutId,
-                RelativeLayout(activity))
+        return LayoutInflater.from(activity).inflate(
+            layoutId,
+            RelativeLayout(activity)
+        )
     }
 
     //获取状态栏高度
@@ -275,7 +279,11 @@ class ActivityUtils {
         var resourceId = 0
         val rid = context.resources.getIdentifier("config_showNavigationBar", "bool", "android")
         if (rid != 0) {
-            resourceId = context.resources.getIdentifier("navigation_bar_height", "dimen", "android")
+            resourceId = context.resources.getIdentifier(
+                "navigation_bar_height",
+                "dimen",
+                "android"
+            )
             return context.resources.getDimensionPixelSize(resourceId)
         } else
             return 0
@@ -326,8 +334,8 @@ class ActivityUtils {
         }
     }
 
-    companion object {
 
+    companion object {
         /**
          * 安装apk
          *
@@ -335,7 +343,10 @@ class ActivityUtils {
          */
         fun installAPK(aty: Activity, path: String) {
             val intent = Intent("android.intent.action.VIEW")
-            intent.setDataAndType(Uri.parse("file://$path"), "application/vnd.android.package-archive")
+            intent.setDataAndType(
+                Uri.parse("file://$path"),
+                "application/vnd.android.package-archive"
+            )
             aty.startActivity(intent)
         }
 

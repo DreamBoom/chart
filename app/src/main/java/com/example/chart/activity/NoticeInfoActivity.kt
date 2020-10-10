@@ -3,13 +3,16 @@ package com.example.chart.activity
 import android.content.Intent
 import android.net.Uri
 import android.text.TextUtils
+import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
 import com.example.chart.R
 import com.example.chart.bean.NoticeInfoBean
 import com.example.chart.net.BaseHttpCallBack
 import com.example.chart.net.HttpRequestPort
+import com.example.chart.utils.StatusBarUtil
 import com.zzhoujay.richtext.RichText
 import com.zzhoujay.richtext.callback.OnUrlClickListener
 import kotlinx.android.synthetic.main.activity_notice_info.*
@@ -20,6 +23,7 @@ class NoticeInfoActivity : BaseActivity() {
     var url = ""
     override fun initView() {
         App.instance.addActivity(this)
+        utils.changeStatusBlack(true,window)
         val id = intent.getStringExtra("id")
         getInfo(id!!)
         fj.setOnClickListener {
@@ -31,6 +35,7 @@ class NoticeInfoActivity : BaseActivity() {
                 startActivity(Intent.createChooser(intent, "请选择浏览器"))
             }
         }
+        back.setOnClickListener { finish() }
     }
 
     private fun getInfo(id: String) {

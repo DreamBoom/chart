@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/dl_bg"
-    tools:context=".activity.LoginActivity">
 
-    <TextView
+    tools:context=".activity.LoginActivity">
+<ImageView
+    android:background="@mipmap/dl_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+    <ImageView
+        android:src="@mipmap/dl_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="85dp"
-        android:text="工业企业信息管理"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size30" />
+        android:layout_marginTop="85dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -50,11 +51,13 @@
             android:layout_marginTop="8dp"
             android:lines="1"
             android:text="JY0000000030"
+            android:textSize="@dimen/size14"
+            android:textColor="@color/grey91"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:background="@drawable/bg_et"
             android:layout_width="match_parent"
-            android:layout_height="35dp" />
+            android:layout_height="45dp" />
         <TextView
             android:id="@+id/t3"
             android:layout_width="wrap_content"
@@ -63,7 +66,7 @@
             android:lines="1"
             android:layout_marginStart="30dp"
             android:layout_marginTop="15dp"
-            android:text="用户名"
+            android:text="密码"
             android:textColor="@color/grey91"
             android:textSize="@dimen/size12" />
 
@@ -71,13 +74,15 @@
             android:id="@+id/pass"
             android:layout_below="@+id/t3"
             android:layout_marginTop="8dp"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
+            android:textSize="@dimen/size14"
             android:layout_marginStart="30dp"
             android:text="admin123456"
+            android:textColor="@color/grey91"
             android:layout_marginEnd="30dp"
             android:background="@drawable/bg_et"
             android:layout_width="match_parent"
-            android:layout_height="35dp" />
+            android:layout_height="45dp" />
         <TextView
             android:id="@+id/sure"
             android:text="登录"

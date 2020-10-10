@@ -21,7 +21,6 @@ class CompanyWeb : BaseActivity() {
     override fun initView() {
         App.instance.addActivity(this)
         val id = intent.getStringExtra("id")!!
-        com.example.chart.utils.LogUtils.i(id)
         url += id
         agentWeb = AgentWeb.with(this)
             .setAgentWebParent(web_view!!, LinearLayout.LayoutParams(-1, -1))
@@ -47,11 +46,6 @@ class CompanyWeb : BaseActivity() {
     }
 
     inner class ChangeIcon {
-        @JavascriptInterface
-        fun goBack() {
-            agentWeb!!.jsAccessEntrace.quickCallJs("getUrl")
-        }
-
         @JavascriptInterface
         fun goClose() {
             finish()

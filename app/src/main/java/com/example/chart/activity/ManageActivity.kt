@@ -1,6 +1,9 @@
 package com.example.chart.activity
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.ColorDrawable
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
@@ -22,7 +25,15 @@ import com.example.chart.net.HttpRequestPort
 import com.example.chart.utils.LogUtils
 import com.example.chart.utils.UserInfo
 import com.pawegio.kandroid.startActivity
+import kotlinx.android.synthetic.main.activity_company_web.*
 import kotlinx.android.synthetic.main.activity_manage.*
+import kotlinx.android.synthetic.main.activity_manage.bar
+import kotlinx.android.synthetic.main.activity_manage.bg
+import kotlinx.android.synthetic.main.activity_manage.changePass
+import kotlinx.android.synthetic.main.activity_manage.out
+import kotlinx.android.synthetic.main.activity_manage.setting
+import kotlinx.android.synthetic.main.activity_manage.show
+
 
 class ManageActivity : BaseActivity() {
     var adapter: ManageAdapter?=null
@@ -42,24 +53,30 @@ class ManageActivity : BaseActivity() {
         list.adapter = adapter
         getArea()
         area.setOnClickListener { showPopup() }
-        getData()
-        getNum()
+
         setting.setOnClickListener {
             if (show.isVisible) {
+                bg.visibility = View.GONE
                 show.visibility = View.GONE
             } else {
+                bg.visibility = View.VISIBLE
                 show.visibility = View.VISIBLE
             }
         }
+        exitPop()
         out.setOnClickListener {
-            UserInfo.token = ""
-            startActivity<LoginActivity>()
-            finish()
+            exitPop!!.showAtLocation(setting, Gravity.NO_GRAVITY, 0, 0)
         }
         changePass.setOnClickListener {
             show.visibility = View.GONE
             startActivity<ChangePass>()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getData()
+        getNum()
     }
     private fun getNum() {
         HttpRequestPort.instance.companyNum(chooseArea,object : BaseHttpCallBack(this) {
@@ -136,6 +153,29 @@ class ManageActivity : BaseActivity() {
             getData()
             getNum()
             popupWindow!!.dismiss()
+        }
+    }
+
+    //退出弹窗
+    var exitPop:PopupWindow?=null
+    @SuppressLint("InflateParams")
+    private fun exitPop() {
+        val view = LayoutInflater.from(this).inflate(R.layout.pop_out, null)
+        val sure = view.findViewById<TextView>(R.id.sure)
+        val cancel = view.findViewById<TextView>(R.id.cancel)
+        exitPop = PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT, true)
+        exitPop!!.isTouchable = true
+        exitPop!!.isOutsideTouchable = false
+        val dw = ColorDrawable(0x00000000)
+        exitPop!!.setBackgroundDrawable(dw)
+        sure.setOnClickListener {
+            UserInfo.token = ""
+            startActivity<LoginActivity>()
+            finish()
+        }
+        cancel.setOnClickListener {
+            exitPop!!.dismiss()
         }
     }
 }

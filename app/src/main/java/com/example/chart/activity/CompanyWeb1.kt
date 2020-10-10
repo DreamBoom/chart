@@ -1,10 +1,17 @@
 package com.example.chart.activity
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.webkit.*
 import android.widget.LinearLayout
+import android.widget.PopupWindow
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import com.example.chart.R
@@ -21,8 +28,13 @@ class CompanyWeb1 : BaseActivity() {
     //企业
     private var url = HttpRequestPort.BASE_URL+"appredirect/gotohtml?htmlname=myinfo&type=android&companyid="
     override fun layoutId(): Int = R.layout.activity_company_web
-
+    override fun onResume() {
+        super.onResume()
+        agentWeb!!.urlLoader.loadUrl(url)
+    }
     override fun initView() {
+        bar.layoutParams.height = utils.getStatusBarHeight(this)
+        utils.changeStatusBlack(true, window)
         App.instance.addActivity(this)
         UserInfo.companyId
         url += UserInfo.companyId
@@ -34,7 +46,6 @@ class CompanyWeb1 : BaseActivity() {
             .createAgentWeb()
             .go(url)
         agentWeb!!.webCreator.webView.scrollBarSize = 0
-        agentWeb!!.jsInterfaceHolder.addJavaObject("ChangeIcon", ChangeIcon())
         if (Build.VERSION.SDK_INT >= 21) {
             val webSettings = agentWeb!!.agentWebSettings.webSettings
             webSettings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
@@ -50,34 +61,22 @@ class CompanyWeb1 : BaseActivity() {
 
         setting.setOnClickListener {
             if (show.isVisible) {
+                bg.visibility = View.GONE
                 show.visibility = View.GONE
             } else {
+                bg.visibility = View.VISIBLE
                 show.visibility = View.VISIBLE
             }
         }
+        exitPop()
         out.setOnClickListener {
-            UserInfo.token = ""
-            startActivity<LoginActivity>()
-            finish()
+            exitPop!!.showAtLocation(setting, Gravity.NO_GRAVITY, 0, 0)
         }
         changePass.setOnClickListener {
             show.visibility = View.GONE
             startActivity<ChangePass>()
         }
     }
-
-    inner class ChangeIcon {
-        @JavascriptInterface
-        fun goBack() {
-            agentWeb!!.jsAccessEntrace.quickCallJs("getUrl")
-        }
-
-        @JavascriptInterface
-        fun goClose() {
-            finish()
-        }
-    }
-
     private val mWebViewClient = object : WebViewClient() {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
@@ -117,6 +116,29 @@ class CompanyWeb1 : BaseActivity() {
         override fun onPageFinished(view: WebView?, urltwo: String?) {
             super.onPageFinished(view, urltwo)
             f_view4.visibility = View.GONE
+        }
+    }
+
+    //退出弹窗
+    var exitPop:PopupWindow?=null
+    @SuppressLint("InflateParams")
+    private fun exitPop() {
+        val view = LayoutInflater.from(this).inflate(R.layout.pop_out, null)
+        val sure = view.findViewById<TextView>(R.id.sure)
+        val cancel = view.findViewById<TextView>(R.id.cancel)
+        exitPop = PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT, true)
+        exitPop!!.isTouchable = true
+        exitPop!!.isOutsideTouchable = false
+        val dw = ColorDrawable(0x00000000)
+        exitPop!!.setBackgroundDrawable(dw)
+        sure.setOnClickListener {
+            UserInfo.token = ""
+            startActivity<LoginActivity>()
+            finish()
+        }
+        cancel.setOnClickListener {
+            exitPop!!.dismiss()
         }
     }
 }

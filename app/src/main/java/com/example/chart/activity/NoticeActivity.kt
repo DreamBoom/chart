@@ -1,6 +1,8 @@
 package com.example.chart.activity
 
 import android.view.View
+import android.view.WindowManager
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
@@ -11,6 +13,7 @@ import com.example.chart.bean.NoticListBean
 import com.example.chart.net.BaseHttpCallBack
 import com.example.chart.net.HttpRequestPort
 import com.example.chart.utils.LogUtils
+import com.example.chart.utils.StatusBarUtil
 import com.example.chart.utils.UserInfo
 import kotlinx.android.synthetic.main.activity_manage.*
 import kotlinx.android.synthetic.main.activity_notice.*
@@ -23,6 +26,7 @@ class NoticeActivity : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_notice
     var page = 1
     override fun initView() {
+        utils.changeStatusBlack(true,window)
         App.instance.addActivity(this)
         val ms = LinearLayoutManager(this)
         ms.orientation = LinearLayoutManager.VERTICAL
@@ -35,6 +39,11 @@ class NoticeActivity : BaseActivity() {
         refresh.setOnLoadMoreListener { getData() }
         adapter = NoticeAdapter(this, R.layout.notice_item, listData)
         list.adapter = adapter
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         refresh.autoRefresh()
     }
 

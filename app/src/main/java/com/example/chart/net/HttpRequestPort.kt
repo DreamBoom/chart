@@ -8,7 +8,8 @@ import java.util.HashMap
  */
 class HttpRequestPort {
     companion object {
-        const val BASE_URL = "http://192.168.12.7:8081/hnyfkj-jyindustry/"
+        const val BASE_URL = "http://115.56.231.22:8083/zyjjpt/"
+        //const val BASE_URL = "http://192.168.12.7:8081/hnyfkj-jyindustry/"
 
         private var httpRequestPort: HttpRequestPort? = null
         val instance: HttpRequestPort
@@ -74,6 +75,8 @@ class HttpRequestPort {
     fun company(copanyArea: String,callBack: BaseHttpCallBack) {
         map = HashMap()
         map!!["copanyArea"] = copanyArea
+        map!!["page"] = "1"
+        map!!["limit"] = "50"
         httpUtil.post(BASE_URL + company, map,callBack)
     }
     /**企业统计*/
