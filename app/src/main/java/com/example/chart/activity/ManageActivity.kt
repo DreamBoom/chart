@@ -25,14 +25,8 @@ import com.example.chart.net.HttpRequestPort
 import com.example.chart.utils.LogUtils
 import com.example.chart.utils.UserInfo
 import com.pawegio.kandroid.startActivity
-import kotlinx.android.synthetic.main.activity_company_web.*
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import kotlinx.android.synthetic.main.activity_manage.*
-import kotlinx.android.synthetic.main.activity_manage.bar
-import kotlinx.android.synthetic.main.activity_manage.bg
-import kotlinx.android.synthetic.main.activity_manage.changePass
-import kotlinx.android.synthetic.main.activity_manage.out
-import kotlinx.android.synthetic.main.activity_manage.setting
-import kotlinx.android.synthetic.main.activity_manage.show
 
 
 class ManageActivity : BaseActivity() {
@@ -48,7 +42,9 @@ class ManageActivity : BaseActivity() {
         ms.orientation = LinearLayoutManager.VERTICAL
         list.layoutManager = ms
         refresh.setEnableOverScrollDrag(false)
-        refresh.setOnRefreshListener { getData() }
+        refresh.setOnRefreshListener {
+            getNum()
+            getData() }
         adapter = ManageAdapter(this,R.layout.manage_item,listData)
         list.adapter = adapter
         getArea()
@@ -68,7 +64,7 @@ class ManageActivity : BaseActivity() {
         }
         exitPop()
         out.setOnClickListener {
-            exitPop!!.showAtLocation(setting, Gravity.NO_GRAVITY, 0, 0)
+            exitPop!!.showAtLocation(name, Gravity.NO_GRAVITY, 0, 0)
         }
         changePass.setOnClickListener {
             show.visibility = View.GONE
@@ -79,12 +75,12 @@ class ManageActivity : BaseActivity() {
     override fun onResume() {
         super.onResume()
         refresh.autoRefresh()
-        getNum()
     }
     private fun getNum() {
         HttpRequestPort.instance.companyNum(chooseArea,object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
+                LogUtils.i(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<CompanyNumBean>() {})
                 if(bean.code == 200){
                     num1.text = "${bean.result.companyCount}"
@@ -98,11 +94,20 @@ class ManageActivity : BaseActivity() {
         HttpRequestPort.instance.company(chooseArea,object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
+                LogUtils.i(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<CompanyBean>() {})
                 if(bean.code == 200){
-                    listData.clear()
-                    listData.addAll(bean.result.list)
-                    adapter!!.notifyDataSetChanged()
+                    if(bean.result.list.size<1){
+                        noData.visibility = View.VISIBLE
+                        listData.clear()
+                        adapter!!.notifyDataSetChanged()
+                    }else{
+                        noData.visibility = View.GONE
+                        listData.clear()
+                        listData.addAll(bean.result.list)
+                        adapter!!.notifyDataSetChanged()
+                    }
+
                 }
             }
 
@@ -146,16 +151,14 @@ class ManageActivity : BaseActivity() {
         pop.setOnClickListener { popupWindow!!.dismiss() }
         all.setOnClickListener {
             chooseArea = ""
-            getData()
-            getNum()
+            refresh.autoRefresh()
             area.text = "请选择所属区域"
             popupWindow!!.dismiss()
         }
         list.setOnItemClickListener { parent, view, position, id ->
             chooseArea = dataList[position].areaName
             area.text = dataList[position].areaName
-            getData()
-            getNum()
+            refresh.autoRefresh()
             popupWindow!!.dismiss()
         }
     }

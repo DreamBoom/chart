@@ -12,6 +12,7 @@ import com.example.chart.net.HttpRequestPort
 import com.example.chart.utils.LogUtils
 import com.example.chart.utils.UserInfo
 import com.gyf.immersionbar.ImmersionBar
+import com.pawegio.kandroid.runDelayed
 import kotlinx.android.synthetic.main.activity_company_web.*
 import kotlinx.android.synthetic.main.activity_notice.*
 
@@ -20,7 +21,6 @@ class NoticeActivity : BaseActivity() {
     var adapter: NoticeAdapter? = null
     var listData = mutableListOf<NoticListBean.ResultBean.ListBean>()
     override fun layoutId(): Int = R.layout.activity_notice
-    var page = 1
     override fun initView() {
         ImmersionBar.with(this)
             .statusBarColor(R.color.transparent) //状态栏颜色，不写默认透明色
@@ -34,39 +34,40 @@ class NoticeActivity : BaseActivity() {
         list.layoutManager = ms
         refresh.setEnableOverScrollDrag(false)
         refresh.setOnRefreshListener {
-            page = 1
             getData()
         }
-        refresh.setOnLoadMoreListener { getData() }
+
         adapter = NoticeAdapter(this, R.layout.notice_item, listData)
         list.adapter = adapter
 
     }
 
+    var i = 0
     override fun onResume() {
         super.onResume()
-        refresh.autoRefresh()
+        if (i == 0) {
+            i = 1
+            refresh.autoRefresh()
+            runDelayed(2000) {
+                i = 0
+            }
+        }
     }
 
     private fun getData() {
-        LogUtils.i(page)
         val companyId = UserInfo.companyId
-        HttpRequestPort.instance.notice(companyId!!, "$page", object : BaseHttpCallBack(this) {
+        HttpRequestPort.instance.notice(companyId!!, object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<NoticListBean>() {})
                 if (bean.code == 200) {
                     if (bean.result.list.size > 0) {
                         noData.visibility = View.GONE
-                        if (page == 1) {
-                            listData.clear()
-                        }
-                        page++
+                        listData.clear()
                         listData.addAll(bean.result.list)
+                        adapter!!.notifyDataSetChanged()
                     } else {
-                        if (page == 1) {
-                            noData.visibility = View.VISIBLE
-                        }
+                        noData.visibility = View.VISIBLE
                     }
                 } else {
                     utils.showToast(bean.msg)

@@ -1,5 +1,6 @@
 package com.example.chart.net
 
+import com.just.agentweb.LogUtils
 import java.util.HashMap
 
 /**
@@ -51,11 +52,11 @@ class HttpRequestPort {
         httpUtil.post(BASE_URL + pass, map,callBack)
     }
     /**通知公告*/
-    fun notice(companyId:String,page: String,callBack: BaseHttpCallBack) {
+    fun notice(companyId:String,callBack: BaseHttpCallBack) {
         map = HashMap()
         map!!["companyId"] = companyId
-        map!!["limit"] = "20"
-        map!!["page"] = page
+//        map!!["limit"] = "20"
+//        map!!["page"] = page
         httpUtil.post(BASE_URL + notice, map,callBack)
     }
     /**通知详情*/
@@ -76,7 +77,7 @@ class HttpRequestPort {
         map = HashMap()
         map!!["copanyArea"] = copanyArea
         map!!["page"] = "1"
-        map!!["limit"] = "50"
+        map!!["limit"] = "100"
         httpUtil.post(BASE_URL + company, map,callBack)
     }
     /**企业统计*/

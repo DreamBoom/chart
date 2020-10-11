@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/et_grey"
     tools:context=".activity.NoticeInfoActivity">
     <TextView
         android:gravity="center"
@@ -62,22 +63,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:drawableStartCompat="@mipmap/icon_time" />
-    <TextView
-        android:id="@+id/fj"
-        android:layout_marginBottom="15dp"
+    <com.example.chart.view.MyGridView
+        android:id="@+id/grid"
         android:layout_below="@+id/user"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:text="无"
-        android:background="@drawable/bg_grey"
-        android:drawablePadding="5dp"
-        android:textColor="@color/black45"
-        android:textSize="@dimen/size14"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:drawableStartCompat="@mipmap/img_fj" />
+        android:background="@color/white"
+        android:fadingEdge="none"
+        android:listSelector="#00000000"
+        android:numColumns="2"
+        android:scrollbars="none"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:stretchMode="columnWidth"
+        android:transcriptMode="alwaysScroll"
+        android:verticalSpacing="10dp"/>
+
     <ScrollView
-        android:layout_below="@+id/fj"
+        android:layout_below="@+id/grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout

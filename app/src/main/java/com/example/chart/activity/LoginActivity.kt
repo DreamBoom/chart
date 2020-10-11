@@ -38,6 +38,7 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun login(name: String, pass: String) {
+        utils.getProgress(this)
         HttpRequestPort.instance.login(name, pass, object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)

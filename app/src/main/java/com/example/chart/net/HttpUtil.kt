@@ -59,6 +59,7 @@ class HttpUtil {
     fun <T> post(url: String, map: Map<String, String>?, callback: Callback.CommonCallback<T>): Callback.Cancelable {
         val params = RequestParams(url)
             if(map!=null){
+                LogUtils.i(JSON.toJSONString(map))
                 params.bodyContent = JSON.toJSONString(map)
             }
         val token = UserInfo.token
