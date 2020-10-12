@@ -88,6 +88,7 @@ class CompanyWeb1 : BaseActivity() {
         }
         changePass.setOnClickListener {
             show.visibility = View.GONE
+            bg.visibility = View.GONE
             startActivity<ChangePass>()
         }
     }
@@ -100,7 +101,6 @@ class CompanyWeb1 : BaseActivity() {
                     no_web.visibility = View.GONE
                 }
             }
-            //  f_view4.visibility = View.VISIBLE
         }
 
         override fun onReceivedHttpError(
@@ -109,7 +109,6 @@ class CompanyWeb1 : BaseActivity() {
             errorResponse: WebResourceResponse?
         ) {
             super.onReceivedHttpError(view, request, errorResponse)
-            //  f_view4.visibility = View.GONE
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 return
             }
@@ -125,7 +124,6 @@ class CompanyWeb1 : BaseActivity() {
             error: WebResourceError?
         ) {
             super.onReceivedError(view, request, error)
-            //  f_view4.visibility = View.GONE
             val errorCode = error!!.errorCode
             // 断网或者网络连接超时
             if (errorCode == ERROR_HOST_LOOKUP || errorCode == ERROR_TIMEOUT) {
@@ -140,7 +138,6 @@ class CompanyWeb1 : BaseActivity() {
 
         override fun onPageFinished(view: WebView?, urltwo: String?) {
             super.onPageFinished(view, urltwo)
-            // f_view4.visibility = View.GONE
         }
     }
 

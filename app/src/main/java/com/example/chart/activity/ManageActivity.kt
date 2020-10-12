@@ -26,7 +26,13 @@ import com.example.chart.utils.LogUtils
 import com.example.chart.utils.UserInfo
 import com.pawegio.kandroid.startActivity
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
+import kotlinx.android.synthetic.main.activity_company_web1.*
 import kotlinx.android.synthetic.main.activity_manage.*
+import kotlinx.android.synthetic.main.activity_manage.bg
+import kotlinx.android.synthetic.main.activity_manage.changePass
+import kotlinx.android.synthetic.main.activity_manage.out
+import kotlinx.android.synthetic.main.activity_manage.setting
+import kotlinx.android.synthetic.main.activity_manage.show
 
 
 class ManageActivity : BaseActivity() {
@@ -68,6 +74,7 @@ class ManageActivity : BaseActivity() {
         }
         changePass.setOnClickListener {
             show.visibility = View.GONE
+            bg.visibility = View.GONE
             startActivity<ChangePass>()
         }
     }
