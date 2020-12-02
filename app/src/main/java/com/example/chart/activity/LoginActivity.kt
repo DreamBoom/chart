@@ -42,7 +42,6 @@ class LoginActivity : BaseActivity() {
         HttpRequestPort.instance.login(name, pass, object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
-                LogUtils.i(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<LoginBean>() {})
                 if (bean.code == 200) {
                     UserInfo.pass = pass
@@ -69,14 +68,12 @@ class LoginActivity : BaseActivity() {
 
             override fun onError(throwable: Throwable, b: Boolean) {
                 super.onError(throwable, b)
-                LogUtils.i(throwable.toString())
                 utils.showToast("登录失败,请检查网络或重新登录")
             }
 
             override fun onFinished() {
                 super.onFinished()
                 utils.hindProgress()
-
             }
         })
     }

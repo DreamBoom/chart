@@ -1,14 +1,14 @@
 package com.example.chart.net
 
 import java.util.*
-
 /**
  * @author Created by Dream
- * 网络接口
  */
 class HttpRequestPort {
     companion object {
-        const val BASE_URL = "http://115.56.231.22:8083/zyjjpt/"
+        const val BASE_URL = "http://221.13.152.245:9091/zyjjpt/"
+
+      //  const val BASE_URL = "http://115.56.231.22:8083/zyjjpt/"
         //const val BASE_URL = "http://192.168.12.7:8081/hnyfkj-jyindustry/"
 
         private var httpRequestPort: HttpRequestPort? = null

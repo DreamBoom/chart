@@ -181,7 +181,6 @@ class RankingActivity : BaseActivity(), OnDateSetListener {
             object : BaseHttpCallBack(this) {
                 override fun success(data: String) {
                     super.success(data)
-                    LogUtils.i("111" + chooseTime1 + data)
                     val bean = JSONObject.parseObject(data, object : TypeReference<OutBean>() {})
                     if (bean.code == 200) {
                             when (bean.result.size) {
@@ -240,7 +239,6 @@ class RankingActivity : BaseActivity(), OnDateSetListener {
             object : BaseHttpCallBack(this) {
                 override fun success(data: String) {
                     super.success(data)
-                    LogUtils.i("222" + data)
                     val bean = JSONObject.parseObject(data, object : TypeReference<InMoney>() {})
                     if (bean.status == 0) {
                         when (bean.data.size) {
@@ -300,7 +298,6 @@ class RankingActivity : BaseActivity(), OnDateSetListener {
             object : BaseHttpCallBack(this) {
                 override fun success(data: String) {
                     super.success(data)
-                    LogUtils.i("333" + data)
                     val bean = JSONObject.parseObject(data, object : TypeReference<MoneyBean>() {})
                     if (bean.code == 200) {
                         when (bean.result.size) {
@@ -356,7 +353,6 @@ class RankingActivity : BaseActivity(), OnDateSetListener {
         HttpRequestPort.instance.kj(chooseArea, object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
-                LogUtils.i("444" + data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<KjBean>() {})
                 if (bean.code == 200) {
                     when (bean.result.size) {

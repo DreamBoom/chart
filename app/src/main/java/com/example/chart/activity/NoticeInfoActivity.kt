@@ -3,9 +3,6 @@ package com.example.chart.activity
 import android.content.Intent
 import android.net.Uri
 import android.text.TextUtils
-import android.view.View
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import com.alibaba.fastjson.JSONObject
 import com.alibaba.fastjson.TypeReference
 import com.example.chart.R
@@ -14,8 +11,6 @@ import com.example.chart.bean.FjBean
 import com.example.chart.bean.NoticeInfoBean
 import com.example.chart.net.BaseHttpCallBack
 import com.example.chart.net.HttpRequestPort
-import com.example.chart.utils.LogUtils
-import com.example.chart.utils.StatusBarUtil
 import com.gyf.immersionbar.ImmersionBar
 import com.zzhoujay.richtext.RichText
 import com.zzhoujay.richtext.callback.OnUrlClickListener
@@ -39,13 +34,13 @@ class NoticeInfoActivity : BaseActivity() {
         gridAdapter = FjAdapter(this@NoticeInfoActivity, FjList, R.layout.fj_item)
         grid.adapter = gridAdapter
         back.setOnClickListener { finish() }
+
     }
 
     private fun getInfo(id: String) {
         HttpRequestPort.instance.noticeInfo(id, object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
-                LogUtils.i(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<NoticeInfoBean>() {})
                 if (bean.code == 200) {
                     if (!TextUtils.isEmpty(bean.result.noticeContent)) {
@@ -55,10 +50,9 @@ class NoticeInfoActivity : BaseActivity() {
                         if(!TextUtils.isEmpty(bean.result.noticeUrl)){
                             val strList = bean.result.noticeUrl.split(",")
                             for (i in strList.indices) {
-                                val split = strList[i].split("/")
-                                val split1 = split[split.size - 1].split("_")
+                                val split = strList[i].split("_")
                                 val fjBean = FjBean()
-                                fjBean.name = split1[split1.size - 1]
+                                fjBean.name = split[split.size - 1]
                                 fjBean.url = "http://115.56.231.22:8083/${strList[i]}"
                                 FjList.add(fjBean)
                             }

@@ -59,6 +59,7 @@ class NoticeActivity : BaseActivity() {
         HttpRequestPort.instance.notice(companyId!!, object : BaseHttpCallBack(this) {
             override fun success(data: String) {
                 super.success(data)
+                LogUtils.i(data)
                 val bean = JSONObject.parseObject(data, object : TypeReference<NoticListBean>() {})
                 if (bean.code == 200) {
                     if (bean.result.list.size > 0) {
